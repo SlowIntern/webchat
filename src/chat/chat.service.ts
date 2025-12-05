@@ -4,10 +4,12 @@ import { Chat } from './schema/chat.schema';
 import { Model, Types } from 'mongoose';
 import { CreateChatDto } from './schema/dto/createChat.dto';
 import { SendMessageDto } from 'src/chat/schema/dto/sendMessage.dto';
+import { User } from 'src/auth/schema/auth.schema';
 
 @Injectable()
 export class ChatService {
-    constructor(@InjectModel(Chat.name) private readonly chatModel: Model<Chat>) { }
+    constructor(@InjectModel(Chat.name) private readonly chatModel: Model<Chat>,
+    @InjectModel(User.name) private readonly userModel: Model<User>) { }
     
 
     async createChat(dto: CreateChatDto): Promise<Chat>
